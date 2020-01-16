@@ -53,6 +53,30 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>org.camunda.bpm.springboot</groupId>
+            <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
+            <version>3.4.0-alpha2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
+<!--        <dependency>-->
+<!--            <groupId>javax.mail</groupId>-->
+<!--            <artifactId>javax.mail-api</artifactId>-->
+<!--            <version>1.6.2</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.camunda.bpm.extension</groupId>-->
+<!--            <artifactId>camunda-bpm-mail-core</artifactId>-->
+<!--            <version>1.2.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.camunda.bpm</groupId>-->
+<!--            <artifactId>camunda-engine-plugin-connect</artifactId>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
