@@ -1,5 +1,6 @@
 package com.upp.nc.controller;
 
+import com.upp.nc.dto.AssignedTasksDto;
 import com.upp.nc.dto.FormFieldsDto;
 import com.upp.nc.dto.FormSubmissionDto;
 import org.camunda.bpm.engine.*;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -107,6 +109,28 @@ public class ProcessController {
             e.printStackTrace();
         }
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/get-assigned-tasks/{userId}", produces = "application/json")
+    public @ResponseBody List<AssignedTasksDto> getAssignedTasks(@PathVariable String userId) {
+      //  String userId = identityService.getCurrentAuthentication().getUserId();
+
+        List<ProcessInstance> processInstances = runtimeService.createProcessInstanceQuery().active().list();
+
+        List<AssignedTasksDto> assignedTasksDtos = new ArrayList<>();
+        for (ProcessInstance processInstance : processInstances) {
+            List<Task> tasks = taskService.createTaskQuery().processInstanceId(processInstance.getId()).active().list();
+            if (tasks.size() != 0) {
+                Task task = tasks.get(0);
+                if (task.getAssignee() != null) {
+                    if (task.getAssignee().equals(userId)) {
+                        assignedTasksDtos.add(new AssignedTasksDto(processInstance.getId(), task.getTaskDefinitionKey()));
+                    }
+                }
+            }
+        }
+
+        return assignedTasksDtos;
     }
 
     private HashMap<String, Object> mapListToDto(List<FormSubmissionDto> list)
