@@ -50,6 +50,8 @@ export class OdabirNaucnihOblastiComponent implements OnInit {
          // this.router.navigate(['scientific-areas/'.concat(value['taskId']).concat('/').concat(value['processInstanceId'])]);
           this.toastr.successToastr('Poslat je mejl za potvrdu registracije', 'Poslat mejl');
           this.router.navigate(['/home']);
+        } else if (value['activeTaskKey'] === 'Dodavanje_urednika_i_recenzenta') {
+          this.router.navigate(['dodavanje-urednika-i-recenzenata/'.concat(value['processInstanceId'])]);
         }
       });
     });

@@ -15,8 +15,8 @@ export class UserService {
     return this.http.post('http://localhost:8080/user/login', user);
   }
 
-  startRegisterTaskAndGetForm() {
-    return this.http.get('http://localhost:8080/process/start/Registracija_korisnika');
+  startTaskAndGetForm(processKey: string) {
+    return this.http.get('http://localhost:8080/process/start/'.concat(processKey));
   }
 
   getRegisterForm(processInstanceId) {
@@ -41,5 +41,13 @@ export class UserService {
 
   getAssignedTasks(userId: any) {
     return this.http.get('http://localhost:8080/process/get-assigned-tasks/'.concat(userId));
+  }
+
+  getUrednici() {
+    return this.http.get('http://localhost:8080/process/editor');
+  }
+
+  getRecenzenti() {
+    return this.http.get('http://localhost:8080/process/reviewer');
   }
 }

@@ -1,0 +1,31 @@
+<div *ngFor="let formValue of form">
+  <div class="form-group" *ngIf="formValue['id'] === 'urednik1'">
+    <label for="{{formValue['label']}}">{{formValue['label']}}</label>
+    <select [(ngModel)]="formValue['value']['value']">
+      <option *ngFor="let urednik of urednici" [value]="urednik['id']">{{urednik.name}} {{urednik.lastName}}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="formValue['id'] === 'urednik2'">
+    <label for="{{formValue['label']}}">{{formValue['label']}}</label>
+    <select [(ngModel)]="formValue['value']['value']">
+      <option *ngFor="let urednik of urednici" [value]="urednik['id']">{{urednik.name}} {{urednik.lastName}}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="formValue['id'] === 'recenzent1'">
+    <label for="{{formValue['label']}}">{{formValue['label']}}</label>
+    <select [(ngModel)]="formValue['value']['value']">
+      <option *ngFor="let recenzent of recenzenti" [value]="recenzent['id']">{{recenzent.name}}{{recenzent.lastName}}</option>
+    </select>
+  </div>
+  <div class="form-group" *ngIf="formValue['id'] === 'recenzent2'">
+    <label for="{{formValue['label']}}">{{formValue['label']}}</label>
+    <select [(ngModel)]="formValue['value']['value']">
+      <option *ngFor="let recenzent of recenzenti" [value]="recenzent['id']">{{recenzent.name}}{{recenzent.lastName}}</option>
+    </select>
+  </div>
+</div>
+
+<button class="btn btn-secondary" (click)="odabir()">Odabir</button>
+
+
+

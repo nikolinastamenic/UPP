@@ -3,9 +3,12 @@ package com.upp.nc.controller;
 import com.upp.nc.dto.AssignedTasksDto;
 import com.upp.nc.dto.FormFieldsDto;
 import com.upp.nc.dto.FormSubmissionDto;
+import com.upp.nc.dto.UserDto;
 import org.camunda.bpm.engine.*;
 import org.camunda.bpm.engine.form.FormField;
 import org.camunda.bpm.engine.form.TaskFormData;
+import org.camunda.bpm.engine.identity.Group;
+import org.camunda.bpm.engine.identity.User;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +76,10 @@ public class ProcessController {
 
     @GetMapping(path = "/get-active/{processInstanceId}", produces = "application/json")
     public @ResponseBody FormFieldsDto getActiveTask(@PathVariable String processInstanceId) {
+        if (taskService.createTaskQuery().processInstanceId(processInstanceId).list().size() == 0)
+        {
+            return null;
+        }
         Task task = taskService.createTaskQuery().processInstanceId(processInstanceId).list().get(0);
 
         TaskFormData tfd = formService.getTaskFormData(task.getId());
@@ -141,5 +148,34 @@ public class ProcessController {
         }
 
         return map;
+    }
+
+    @GetMapping(path = "/editor", produces = "application/json")
+    public @ResponseBody List<UserDto> getUrednici() {
+
+        List<User> users = this.identityService.createUserQuery().list();
+        List<UserDto> urednici = new ArrayList<>();
+
+        for (User userTemp : users) {
+            if (userTemp.getId().startsWith("editor")) {
+                urednici.add(new UserDto(userTemp.getId(), userTemp.getFirstName(), userTemp.getLastName(), userTemp.getEmail()));
+//                identityService.createMembership(userTemp.getId(), "editors");
+            }
+        }
+        return urednici;
+    }
+
+    @GetMapping(path = "/reviewer", produces = "application/json")
+    public @ResponseBody List<UserDto> getRecenzenti() {
+        List<User> users = this.identityService.createUserQuery().list();
+        List<UserDto> recenzenti = new ArrayList<>();
+
+        for (User userTemp : users) {
+            if (userTemp.getId().startsWith("recenzent")) {
+                recenzenti.add(new UserDto(userTemp.getId(), userTemp.getFirstName(), userTemp.getLastName(), userTemp.getEmail()));
+              //  identityService.createMembership(userTemp.getId(), "reviewers");
+            }
+        }
+        return recenzenti;
     }
 }

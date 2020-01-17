@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
       });
     } else {
 
-      this.userService.startRegisterTaskAndGetForm().subscribe(ret => {
+      this.userService.startTaskAndGetForm('Registracija_korisnika').subscribe(ret => {
         this.taskId = ret['taskId']
         this.form = ret['formFields'];
         this.processInstanceId = ret['processInstanceId'];

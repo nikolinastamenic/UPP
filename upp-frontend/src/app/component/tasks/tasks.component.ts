@@ -26,6 +26,12 @@ export class TasksComponent implements OnInit {
       this.router.navigate(['scientific-areas/'.concat(task['processInstanceId'])]);
     } else if (task['taskKey'] === 'Potvrda_recenzenta') {
       this.router.navigate(['potvrda_recenzenta/'.concat(task['processInstanceId'])]);
+    } else if (task['taskKey'] === 'Pregled_podataka' || task['taskKey'] === 'Task_0lfmnzb') {
+      this.router.navigate(['pregled-podataka-casopisa/'.concat(task['processInstanceId'])]);
+    } else if (task['taskKey'] === 'Dodavanje_urednika_i_recenzenta') {
+      this.router.navigate(['dodavanje-urednika-i-recenzenata/'.concat(task['processInstanceId'])]);
+    } else if (task['taskKey'] === 'Ispravak_podataka') {
+      this.router.navigate(['ispravak-podataka-casopisa/'.concat(task['processInstanceId'])]);
     }
   }
 
