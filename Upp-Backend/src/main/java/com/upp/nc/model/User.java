@@ -3,6 +3,7 @@ package com.upp.nc.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table
@@ -28,6 +29,12 @@ public class User {
     private String username;
     @Column
     private String password;
+    @Column
+    private String email;
     @ElementCollection
     private List<String> naucneOblasti;
+
+    public User() {
+        naucneOblasti = new ArrayList<>();
+    }
 }
