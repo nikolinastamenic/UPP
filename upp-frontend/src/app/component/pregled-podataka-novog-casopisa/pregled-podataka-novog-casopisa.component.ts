@@ -42,7 +42,9 @@ export class PregledPodatakaNovogCasopisaComponent implements OnInit {
           this.router.navigate(['/home']);
         } else if (value['activeTaskKey'] === 'Ispravak_podataka') {
           this.toastr.warningToastr('Casopis je poslat na ispravku', 'Casopis na ispravci!');
-          this.router.navigate(['ispravak-podataka-casopisa/'.concat(value['processInstanceId'])]);
+          // this.router.navigate(['ispravak-podataka-casopisa/'.concat(value['processInstanceId'])]);
+          this.router.navigate(['/home']);
+
         }
       });
 

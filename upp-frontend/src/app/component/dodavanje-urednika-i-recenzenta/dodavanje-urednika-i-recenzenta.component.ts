@@ -55,7 +55,7 @@ export class DodavanjeUrednikaIRecenzentaComponent implements OnInit {
     } else {
       this.userService.submitTaskForm(this.processInstanceId, formData).subscribe(ret => {
         this.toastr.successToastr('Casopis je poslat na reviziju', 'Casopis na reviziji!');
-        this.router.navigate(['pregled-podataka-casopisa/'.concat(this.processInstanceId)]);
+        this.router.navigate(['/home']);
       });
     }
   }

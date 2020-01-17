@@ -41,12 +41,12 @@ public class ProcessController {
     @Autowired
     FormService formService;
 
-    @GetMapping(path = "/start/{processId}", produces = "application/json")
-    public @ResponseBody FormFieldsDto get(@PathVariable String processId) {
+    @GetMapping(path = "/start/{processId}/{userId}", produces = "application/json")
+    public @ResponseBody FormFieldsDto get(@PathVariable String processId, @PathVariable String userId) {
         //provera da li korisnik sa id-jem pera postoji
         //List<User> users = identityService.createUserQuery().userId("pera").list();
         ProcessInstance pi = runtimeService.startProcessInstanceByKey(processId);
-
+        runtimeService.setVariable(pi.getId(), "initiator", userId);
         Task task = taskService.createTaskQuery().processInstanceId(pi.getId()).list().get(0);
 
         TaskFormData tfd = formService.getTaskFormData(task.getId());
@@ -91,27 +91,28 @@ public class ProcessController {
         return new FormFieldsDto(task.getId(), processInstanceId, properties, task.getTaskDefinitionKey());
     }
 
-    @PostMapping(path = "/post/{processInstanceId}", produces = "application/json")
+    @PostMapping(path = "/post/{processInstanceId}/{initiator}", produces = "application/json")
     public @ResponseBody
-    ResponseEntity post(@RequestBody List<FormSubmissionDto> dto, @PathVariable String processInstanceId) {
+    ResponseEntity post(@RequestBody List<FormSubmissionDto> dto, @PathVariable String processInstanceId, @PathVariable String initiator) {
         HashMap<String, Object> map = this.mapListToDto(dto);
 
-        // list all running/unsuspended instances of the process
-//		    ProcessInstance processInstance =
-//		        runtimeService.createProcessInstanceQuery()
-//		            .processDefinitionKey("Process_1")
-//		            .active() // we only want the unsuspended process instances
-//		            .list().get(0);
-
-//			Task task = taskService.createTaskQuery().processInstanceId(processInstance.getId()).list().get(0);
-
-
         Task task = taskService.createTaskQuery().processInstanceId(processInstanceId).list().get(0);
-//        Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
-//        String processInstanceId = task.getProcessInstanceId();
-        runtimeService.setVariable(processInstanceId, "registration", dto);
+//        if (task.getAssignee() == null) {
+//            task.setAssignee(userId);
+//        }
         try {
             formService.submitTaskForm(task.getId(), map);
+            if (taskService.createTaskQuery().processInstanceId(processInstanceId).list().size() != 0) {
+                task = taskService.createTaskQuery().processInstanceId(processInstanceId).list().get(0);
+                if (task.getAssignee() == null) {
+                    if (task.getTaskDefinitionKey().equals("Ispravak_podataka")) {
+                        task.setAssignee((runtimeService.getVariable(processInstanceId, "initiator")).toString());
+                    } else {
+                        task.setAssignee(initiator);
+                    }
+                    taskService.saveTask(task);
+                }
+            }
         } catch(RuntimeException e) {
             e.printStackTrace();
         }

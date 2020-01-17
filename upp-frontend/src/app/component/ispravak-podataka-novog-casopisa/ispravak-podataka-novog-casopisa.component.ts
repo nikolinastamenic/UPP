@@ -42,16 +42,8 @@ export class IspravakPodatakaNovogCasopisaComponent implements OnInit {
       formData.push({fieldId: this.form[i]['id'], fieldValue: this.form[i]['value']['value']});
     }
     this.userService.submitTaskForm(this.processInstanceId, formData).subscribe(ret => {
-      this.userService.getActiveTask(this.processInstanceId).subscribe( value => {
-        console.log(value);
-        if (value['activeTaskKey'] === 'Pregled_podataka') {
-          this.toastr.warningToastr('Casopis je poslat na ponovni pregled', 'Casopis na pregledu!');
-          this.router.navigate(['pregled-podataka-casopisa/'.concat(value['processInstanceId'])]);
-        } else {
-          this.toastr.successToastr('Casopis je uspesno kreiran', 'Kreiran casopis!');
-          this.router.navigate(['home/'.concat(value['processInstanceId'])]);
-        }
-      });
+      this.toastr.warningToastr('Casopis je poslat na ponovni pregled', 'Casopis na pregledu!');
+      this.router.navigate(['home/']);
 
     });
   }

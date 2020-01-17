@@ -16,7 +16,8 @@ export class UserService {
   }
 
   startTaskAndGetForm(processKey: string) {
-    return this.http.get('http://localhost:8080/process/start/'.concat(processKey));
+    const userId = localStorage.getItem('loggedUser');
+    return this.http.get('http://localhost:8080/process/start/'.concat(processKey).concat('/').concat(userId));
   }
 
   getRegisterForm(processInstanceId) {
@@ -28,7 +29,8 @@ export class UserService {
   }
 
   submitTaskForm(processInstanceId: any, formData: any) {
-    return this.http.post('http://localhost:8080/process/post/'.concat(processInstanceId), formData);
+    const userId = localStorage.getItem('loggedUser');
+    return this.http.post('http://localhost:8080/process/post/'.concat(processInstanceId).concat('/').concat(userId), formData);
   }
 
   getActiveTask(processInstanceId: any) {

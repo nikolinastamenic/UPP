@@ -155,7 +155,7 @@
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_1wc95hk" sourceRef="Ispravak_podataka" targetRef="Pregled_podataka" />
     <bpmn:sequenceFlow id="SequenceFlow_0yuka8c" sourceRef="Task_19m78fd" targetRef="EndEvent_08szynl" />
-    <bpmn:serviceTask id="Task_19m78fd" name="Snimanje casopisa sa ispravljenim podacima" camunda:expression="${true==true}">
+    <bpmn:serviceTask id="Task_19m78fd" name="Snimanje casopisa sa ispravljenim podacima" camunda:delegateExpression="#{createMagazine}">
       <bpmn:incoming>SequenceFlow_0dhv0yx</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0yuka8c</bpmn:outgoing>
     </bpmn:serviceTask>
