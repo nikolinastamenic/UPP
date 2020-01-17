@@ -96,10 +96,10 @@ public class ProcessController {
     ResponseEntity post(@RequestBody List<FormSubmissionDto> dto, @PathVariable String processInstanceId, @PathVariable String initiator) {
         HashMap<String, Object> map = this.mapListToDto(dto);
 
+        if (taskService.createTaskQuery().processInstanceId(processInstanceId).list().size() == 0) {
+            return null;
+        }
         Task task = taskService.createTaskQuery().processInstanceId(processInstanceId).list().get(0);
-//        if (task.getAssignee() == null) {
-//            task.setAssignee(userId);
-//        }
         try {
             formService.submitTaskForm(task.getId(), map);
             if (taskService.createTaskQuery().processInstanceId(processInstanceId).list().size() != 0) {

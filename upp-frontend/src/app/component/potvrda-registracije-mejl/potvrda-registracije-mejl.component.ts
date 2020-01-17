@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../service/user.service';
 import {ToastrManager} from 'ng6-toastr-notifications';
@@ -29,16 +29,16 @@ export class PotvrdaRegistracijeMejlComponent implements OnInit {
     }
     this.userService.submitTaskForm(this.processInstanceId, formData).subscribe(ret => {
       this.userService.getActiveTask(this.processInstanceId).subscribe( value => {
-        if (value['activeTaskKey'] === 'Potvrda_recenzenta') {
+        if (value === null) {
+          this.toastr.successToastr('Uspesno ste se registrovali na sistem!', 'Uspesna registracija');
+          this.router.navigate(['/home']);
+        } else if (value['activeTaskKey'] === 'Potvrda_recenzenta') {
           this.toastr.warningToastr('Ceka se odobrenje za ulogu recenzenta', 'Cekanje odobrenja uloge')
           this.router.navigate(['/home']);
 
           // this.router.navigate(['potvrda_recenzenta/'.concat(value['processInstanceId'])]);
-        } else {
-          this.toastr.successToastr('Uspesno ste se registrovali na sistem!', 'Uspesna registracija');
-          this.router.navigate(['home']);
         }
-      })
+      });
 
      // this.router.navigate(['scientific-areas/'.concat(this.taskId).concat('/').concat(this.processInstanceId)]);
 
