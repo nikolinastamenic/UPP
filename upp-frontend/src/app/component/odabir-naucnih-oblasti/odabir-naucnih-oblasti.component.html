@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+
+      <div class="form-group" *ngIf="formValue['type']['name'] === 'enum'">
+        <div class="column small-12 large-2">
+          <label class="sbw_light">Naucna oblast:</label><br/>
+          <select [(ngModel)]="formValue['value']['value']">
+            <option *ngFor="let oblast of naucneOblasti" [value]="oblast[0]">{{oblast[1]}}</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn btn-secondary" (click)="submit()">Odaberi</button>
+    </div>
+  </div>
+</div>

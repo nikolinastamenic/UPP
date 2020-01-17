@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #880000">
+  <a class="navbar-brand" routerLink="home">
+    <div><img src="https://img.icons8.com/dusk/64/000000/book.png">Scientific center</div>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+    <ul id="user" class="navbar-nav ml-auto" style="margin-right: 5%">
+      <li *ngIf="userRole === ''" class="nav-item active" >
+        <a class="nav-link" routerLink="login" >Logovanje</a>
+      </li>
+      <li *ngIf="userRole === ''" class="nav-item active" >
+        <a class="nav-link" routerLink="register/true">Registracija </a>
+
+      </li>
+      <li *ngIf="userRole !== ''" class="nav-item active" >
+        <a class="nav-link"  routerLink="tasks">Tasks </a>
+      </li>
+      <li *ngIf="userRole !== ''" class="nav-item active" >
+        <a class="nav-link"  (click)="logout()">Log out </a>
+      </li>
+
+
+
+
+    </ul>
+  </div>
+</nav>
