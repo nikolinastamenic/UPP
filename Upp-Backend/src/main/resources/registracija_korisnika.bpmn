@@ -153,7 +153,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_0362vz0" name="Podaci nevalidni" sourceRef="ExclusiveGateway_1n2tplu" targetRef="Slanje_mejla">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${validnost==true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:serviceTask id="Task_1u5gbs3" name="Otkazivanje recenzenta i registracija obicnog korisnika" camunda:expression="execution.setVariable(&#34;recenzent&#34;, false);">
+    <bpmn:serviceTask id="Task_1u5gbs3" name="Otkazivanje recenzenta i registracija obicnog korisnika" camunda:delegateExpression="#{registerUser}">
       <bpmn:incoming>SequenceFlow_05m8zsb</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1uvgda1</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -174,11 +174,11 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1uge7ml" sourceRef="Slanje_mejla_nevalidno" targetRef="Registracija" />
     <bpmn:sequenceFlow id="SequenceFlow_0h6vcmb" sourceRef="Task_1578u3h" targetRef="EndEvent_1aoke0h" />
-    <bpmn:serviceTask id="Task_1578u3h" name="Izvrsenje registracije" camunda:expression="${true==true}">
+    <bpmn:serviceTask id="Task_1578u3h" name="Izvrsenje registracije" camunda:delegateExpression="#{registerUser}">
       <bpmn:incoming>SequenceFlow_1k9shio</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0h6vcmb</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="ServiceTask_00spg6h" name="Izvrsenje registracije" camunda:expression="${true==true}">
+    <bpmn:serviceTask id="ServiceTask_00spg6h" name="Izvrsenje registracije" camunda:delegateExpression="#{registerReviewer}">
       <bpmn:incoming>SequenceFlow_1vpk24s</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0psavha</bpmn:outgoing>
     </bpmn:serviceTask>

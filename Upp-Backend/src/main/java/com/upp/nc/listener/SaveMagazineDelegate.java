@@ -15,23 +15,13 @@ public class SaveMagazineDelegate implements JavaDelegate {
 
 
     private final MagazineRepository magazineRepository;
-    IdentityService identityService;
 
     private final RuntimeService runtimeService;
 
-    private final RepositoryService repositoryService;
-
-    private final TaskService taskService;
-
-    private final FormService formService;
-
     @Autowired
-    public SaveMagazineDelegate(MagazineRepository magazineRepository, RuntimeService runtimeService, RepositoryService repositoryService, TaskService taskService, FormService formService) {
+    public SaveMagazineDelegate(MagazineRepository magazineRepository, RuntimeService runtimeService) {
         this.magazineRepository = magazineRepository;
         this.runtimeService = runtimeService;
-        this.repositoryService = repositoryService;
-        this.taskService = taskService;
-        this.formService = formService;
     }
 
     @Override
