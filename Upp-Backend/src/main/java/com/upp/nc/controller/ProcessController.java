@@ -45,8 +45,12 @@ public class ProcessController {
     public @ResponseBody FormFieldsDto get(@PathVariable String processId, @PathVariable String userId) {
         //provera da li korisnik sa id-jem pera postoji
         //List<User> users = identityService.createUserQuery().userId("pera").list();
+        if (userId == null && !processId.equals("Proces_obrade_podnetog_teksta")) {
+            userId = "guest";
+        }
+        identityService.setAuthenticatedUserId(userId);
         ProcessInstance pi = runtimeService.startProcessInstanceByKey(processId);
-        runtimeService.setVariable(pi.getId(), "initiator", userId);
+//        runtimeService.setVariable(pi.getId(), "initiator", userId);
         Task task = taskService.createTaskQuery().processInstanceId(pi.getId()).list().get(0);
 
         TaskFormData tfd = formService.getTaskFormData(task.getId());

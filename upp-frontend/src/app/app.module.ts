@@ -19,6 +19,7 @@ import { KreiranjeCasopisaComponent } from './component/kreiranje-casopisa/kreir
 import { DodavanjeUrednikaIRecenzentaComponent } from './component/dodavanje-urednika-i-recenzenta/dodavanje-urednika-i-recenzenta.component';
 import { PregledPodatakaNovogCasopisaComponent } from './component/pregled-podataka-novog-casopisa/pregled-podataka-novog-casopisa.component';
 import { IspravakPodatakaNovogCasopisaComponent } from './component/ispravak-podataka-novog-casopisa/ispravak-podataka-novog-casopisa.component';
+import { OdabirCasopisaComponent } from './component/obrada-podnetog-teksta/odabir-casopisa/odabir-casopisa.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { IspravakPodatakaNovogCasopisaComponent } from './component/ispravak-pod
     KreiranjeCasopisaComponent,
     DodavanjeUrednikaIRecenzentaComponent,
     PregledPodatakaNovogCasopisaComponent,
-    IspravakPodatakaNovogCasopisaComponent
+    IspravakPodatakaNovogCasopisaComponent,
+    OdabirCasopisaComponent
   ],
   imports: [
     BrowserModule,

@@ -29,7 +29,7 @@ public class SaveMagazineDelegate implements JavaDelegate {
 
         String processInstanceId = delegateExecution.getProcessInstance().getProcessInstanceId();
         ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
-
+        
         Magazine magazine = new Magazine();
 
         magazine.setNaziv(runtimeService.getVariable(processInstanceId, "naziv").toString());

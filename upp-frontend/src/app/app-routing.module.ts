@@ -11,6 +11,7 @@ import {KreiranjeCasopisaComponent} from './component/kreiranje-casopisa/kreiran
 import {DodavanjeUrednikaIRecenzentaComponent} from './component/dodavanje-urednika-i-recenzenta/dodavanje-urednika-i-recenzenta.component';
 import {PregledPodatakaNovogCasopisaComponent} from './component/pregled-podataka-novog-casopisa/pregled-podataka-novog-casopisa.component';
 import {IspravakPodatakaNovogCasopisaComponent} from './component/ispravak-podataka-novog-casopisa/ispravak-podataka-novog-casopisa.component';
+import {OdabirCasopisaComponent} from './component/obrada-podnetog-teksta/odabir-casopisa/odabir-casopisa.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'kreiranje-casopisa', component: KreiranjeCasopisaComponent},
   {path: 'dodavanje-urednika-i-recenzenata/:processInstanceId', component: DodavanjeUrednikaIRecenzentaComponent},
   {path: 'pregled-podataka-casopisa/:processInstanceId', component: PregledPodatakaNovogCasopisaComponent},
-  {path: 'ispravak-podataka-casopisa/:processInstanceId', component: IspravakPodatakaNovogCasopisaComponent}
+  {path: 'ispravak-podataka-casopisa/:processInstanceId', component: IspravakPodatakaNovogCasopisaComponent},
+  {path: 'kreiranje-rada', component: OdabirCasopisaComponent},
 ];
 
 @NgModule({

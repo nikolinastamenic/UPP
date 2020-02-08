@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+
+
+      <form name="magazinesForm" (submit)="create()">
+        <div *ngFor="let formValue of form">
+          <!--    <div class="form-group" *ngIf="formValue['type']['name'] === 'string'">-->
+          <!--      <label for="{{formValue['label']}}">{{formValue['label']}}</label>-->
+          <!--      <input type="text" class="form-control" [name]="formValue['label']" [(ngModel)]="formValue['value']['value']">-->
+          <!--    </div>-->
+          <div class="form-group" *ngIf="formValue['type']['name'] === 'string'">
+            <label for="{{formValue['label']}}">{{formValue['label']}}</label>
+            <select [(ngModel)]="formValue['value']['value']" name="casopis">
+              <option *ngFor="let magazine of magazines" [value]="magazine['id']">{{magazine['naziv']}}</option>
+            </select>
+          </div>
+          <div class="form-group" *ngIf="formValue['type']['name'] === 'enum'">
+            <label for="{{formValue['label']}}">{{formValue['label']}}</label>
+            <select [(ngModel)]="formValue['value']['value']" name="Nacin_naplacivanja">
+              <option *ngFor="let placanje of naciniPlacanja" [value]="placanje[0]">{{placanje[1]}}</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-secondary" type="submit">Odabir</button>
+      </form>
+    </div>
+  </div>
+</div>
