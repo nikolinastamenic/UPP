@@ -345,7 +345,7 @@
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_1f6bbd3" sourceRef="revizija_manjih_ispravaka" targetRef="ExclusiveGateway_08pq528" />
     <bpmn:sequenceFlow id="SequenceFlow_12qdmlq" name="Rad nije odobren" sourceRef="ExclusiveGateway_08pq528" targetRef="Ispravak_rada_od_strane_autora">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${konacno_odobrenje_rada==false}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${konacno_odobrenje_rada!=true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0pn7a56" name="Rad odobren" sourceRef="ExclusiveGateway_08pq528" targetRef="obavestenje_autora_rad_prihvacen">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${konacno_odobrenje_rada==true}</bpmn:conditionExpression>
@@ -400,7 +400,7 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0wvn9ed" sourceRef="obavestenje_autora_rad_prihvacen" targetRef="Cuvanje_podataka_o_odobrenju_rada" />
     <bpmn:sequenceFlow id="SequenceFlow_0v1gyaq" name="Rad odbijen" sourceRef="ExclusiveGateway_1rkv3k3" targetRef="Task_1hieo30">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${konacno_odobrenje_rada==false}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${konacno_odobrenje_rada!=true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="EndEvent_15x1h5o">
       <bpmn:incoming>SequenceFlow_1icom99</bpmn:incoming>
