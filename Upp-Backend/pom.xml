@@ -57,6 +57,12 @@
             <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
             <version>3.4.0-alpha2</version>
         </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${groovy.version}</version>
+            <type>pom</type>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
 <!--        <dependency>-->
 <!--            <groupId>javax.mail</groupId>-->

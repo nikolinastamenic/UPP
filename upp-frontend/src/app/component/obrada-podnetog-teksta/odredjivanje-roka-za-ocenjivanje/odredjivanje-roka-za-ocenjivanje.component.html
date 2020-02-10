@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+
+
+      <form name="workInformation" (submit)="potvrda()">
+        <div *ngFor="let formValue of form">
+          <div class="form-group" *ngIf="formValue['type']['name'] === 'long'">
+            <label for="{{formValue['label']}}">{{formValue['label']}}</label>
+            <input type="number" min="10" [min]="10" class="form-control" [name]="formValue['label']" [(ngModel)]="formValue['value']['value']">
+          </div>
+        </div>
+
+        <button class="btn btn-secondary" type="submit">Potvrda</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+      <button class="btn btn-secondary" (click)="downloadPDF()">Preuzimanje PDF-a</button>
+      <form name="aktivnaClanarina" (submit)="potvrda()">
+        <div *ngFor="let formValue of form">
+          <div class="form-group" *ngIf="formValue['type']['name'] === 'boolean'">
+            <label for="{{formValue['label']}}">{{formValue['label']}}</label>
+            <input type="checkbox" class="form-control" [name]="formValue['label']"
+                   [(ngModel)]="formValue['value']['value']">
+          </div>
+          <div class="form-group" *ngIf="formValue['type']['name'] === 'string' && formValue['id'] !== 'pdf'">
+            <label for="{{formValue['label']}}">{{formValue['label']}}</label>
+            <input type="text" class="form-control" [name]="formValue['label']" [(ngModel)]="formValue['value']['value']" readonly>
+          </div>
+        </div>
+        <button class="btn btn-secondary" type="submit">Potvrdi</button>
+      </form>
+    </div>
+  </div>
+</div>

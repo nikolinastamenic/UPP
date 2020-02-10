@@ -16,7 +16,8 @@ export class OdabirCasopisaComponent implements OnInit {
   form: any;
   naciniPlacanja: any;
   magazines: any;
-  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router, private toastr: ToastrManager, private magazineService: MagazineService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router, private toastr: ToastrManager,
+              private magazineService: MagazineService) { }
 
   ngOnInit() {
     this.userService.startTaskAndGetForm('Proces_obrade_podnetog_teksta').subscribe(ret => {
@@ -40,11 +41,20 @@ export class OdabirCasopisaComponent implements OnInit {
 
   create() {
     const formData = [];
+    let selectedNacinNaplacivanja;
     for (let i = 0; i < this.form.length; i++) {
       formData.push({fieldId: this.form[i]['id'], fieldValue: this.form[i]['value']['value']});
+      if (this.form[i]['id'] === 'nacin_naplacivanja') {
+        selectedNacinNaplacivanja = this.form[i]['value']['value'];
+      }
     }
     this.userService.submitTaskForm(this.processInstanceId, formData).subscribe(ret => {
-      this.router.navigate(['scientific-areas/'.concat(this.processInstanceId)]);
+      if (selectedNacinNaplacivanja === 'Naplacivanje_autorima') {
+        this.router.navigate(['aktivna-clanarina/'.concat(this.processInstanceId)]);
+      } else {
+        this.router.navigate(['informacije-o-radu/'.concat(this.processInstanceId)]);
+      }
+
 
     });
   }

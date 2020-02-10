@@ -20,6 +20,19 @@ import { DodavanjeUrednikaIRecenzentaComponent } from './component/dodavanje-ure
 import { PregledPodatakaNovogCasopisaComponent } from './component/pregled-podataka-novog-casopisa/pregled-podataka-novog-casopisa.component';
 import { IspravakPodatakaNovogCasopisaComponent } from './component/ispravak-podataka-novog-casopisa/ispravak-podataka-novog-casopisa.component';
 import { OdabirCasopisaComponent } from './component/obrada-podnetog-teksta/odabir-casopisa/odabir-casopisa.component';
+import { AktivnaClanarinaComponent } from './component/obrada-podnetog-teksta/aktivna-clanarina/aktivna-clanarina.component';
+import { UnosInformacijaORaduComponent } from './component/obrada-podnetog-teksta/unos-informacija-o-radu/unos-informacija-o-radu.component';
+import { UplataClanarineComponent } from './component/obrada-podnetog-teksta/uplata-clanarine/uplata-clanarine.component';
+import { ObradaRadaGlavniUrednikComponent } from './component/obrada-podnetog-teksta/obrada-rada-glavni-urednik/obrada-rada-glavni-urednik.component';
+import { PregledPdfaComponent } from './component/obrada-podnetog-teksta/pregled-pdfa/pregled-pdfa.component';
+import { IspravakRadaComponent } from './component/obrada-podnetog-teksta/ispravak-rada/ispravak-rada.component';
+import { OdabirRecenzenataComponent } from './component/obrada-podnetog-teksta/odabir-recenzenata/odabir-recenzenata.component';
+import { OdredjivanjeRokaZaOcenjivanjeComponent } from './component/obrada-podnetog-teksta/odredjivanje-roka-za-ocenjivanje/odredjivanje-roka-za-ocenjivanje.component';
+import { RecenzijaRadaComponent } from './component/obrada-podnetog-teksta/recenzija-rada/recenzija-rada.component';
+import { AnalizaRecenzijeComponent } from './component/obrada-podnetog-teksta/analiza-recenzije/analiza-recenzije.component';
+import { OdabirNovogRecenzentaComponent } from './component/obrada-podnetog-teksta/odabir-novog-recenzenta/odabir-novog-recenzenta.component';
+import { ManjiIspravakAutorComponent } from './component/obrada-podnetog-teksta/manji-ispravak-autor/manji-ispravak-autor.component';
+import { RevizijaManjiIspravakUrednikComponent } from './component/obrada-podnetog-teksta/revizija-manji-ispravak-urednik/revizija-manji-ispravak-urednik.component';
 
 
 @NgModule({
@@ -37,7 +50,20 @@ import { OdabirCasopisaComponent } from './component/obrada-podnetog-teksta/odab
     DodavanjeUrednikaIRecenzentaComponent,
     PregledPodatakaNovogCasopisaComponent,
     IspravakPodatakaNovogCasopisaComponent,
-    OdabirCasopisaComponent
+    OdabirCasopisaComponent,
+    AktivnaClanarinaComponent,
+    UnosInformacijaORaduComponent,
+    UplataClanarineComponent,
+    ObradaRadaGlavniUrednikComponent,
+    PregledPdfaComponent,
+    IspravakRadaComponent,
+    OdabirRecenzenataComponent,
+    OdredjivanjeRokaZaOcenjivanjeComponent,
+    RecenzijaRadaComponent,
+    AnalizaRecenzijeComponent,
+    OdabirNovogRecenzentaComponent,
+    ManjiIspravakAutorComponent,
+    RevizijaManjiIspravakUrednikComponent,
   ],
   imports: [
     BrowserModule,

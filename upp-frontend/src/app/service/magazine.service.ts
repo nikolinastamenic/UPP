@@ -12,4 +12,15 @@ export class MagazineService {
   getAll() {
     return this.http.get('http://localhost:8080/magazine');
   }
+
+  savePDF(file) {
+    const f = new FormData();
+    f.append('file', file);
+    return this.http.post('http://localhost:8080/magazine/pdf', f);
+
+  }
+
+  getPDF(filename: string) {
+    return this.http.get('http://localhost:8080/magazine/pdf/'.concat(filename), {responseType: 'blob'});
+  }
 }
